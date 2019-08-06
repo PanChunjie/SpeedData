@@ -8,10 +8,10 @@
  // include_once '../../config/Database.php';
  // include_once '../../models/Post.php';
 
-  $data = trim(file_get_contents('php://input'));
+ // $data = trim(file_get_contents('php://input'));
   $dataPOST = "This ";
-  file_put_contents("myxmlfile.xml", $data);
-  $xmlData = simplexml_load_string($data);    
+  file_put_contents("myxmlfile.xml", $dataPOST);
+  $xmlData = simplexml_load_string($dataPOST);    
   
   print_r($xmlData);
   ?>
