@@ -4,11 +4,11 @@
 //  header('Content-Type: application/json');
  // header('Access-Control-Allow-Methods: PUT');
 //  header('Access-Control-Allow-Headers: Access-Control-Allow-Headers, Content-Type, Access-Control-Allow-Methods, Authorization,X-Requested-With');
-<?php
-$dataPOST = trim(file_get_contents('php://input'));
-$xmlData = simplexml_load_string($dataPOST);    
-print_r($xmlData);
-?>
+ 
+ $dataPOST = trim(file_get_contents('php://input'));
+ $xmlData = simplexml_load_string($dataPOST);    
+ print_r($xmlData);
+
  // include_once '../../config/Database.php';
  // include_once '../../models/Category.php';
   // Instantiate DB & connect
