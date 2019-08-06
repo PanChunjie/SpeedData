@@ -9,12 +9,12 @@
  // include_once '../../models/Post.php';
   
   //  $html = "";
-  //  $xmlstr = simplexml_load_file("http://api.openweathermap.org/data/2.5/weather?zip=45220,us&APPID=8ea80fceb1c77f7b6e101fd61bf5076c&mode=xml");
+    $xmlstr = simplexml_load_file("http://api.openweathermap.org/data/2.5/weather?zip=45220,us&APPID=8ea80fceb1c77f7b6e101fd61bf5076c&mode=xml");
 
   //  $xmlobj = new SimpleXMLElement($xmlstr);
   //  $xmlobj = (array)$xmlobj;//optional
-    //$xml = simplexml_load_file($url);
-   // print_r($xmlstr);
+   // $xml = simplexml_load_file($url);
+    print_r($xmlstr);
   
   // print_r('asda');
   
@@ -29,10 +29,10 @@
   // Blog post query
  // $result = $post->read();
   // Get row count
-  // $num = 5;
+   $num = 5;
 
-  // // Check if any posts
-  // if($num > 0) {
+   // // Check if any posts
+   if($num > 0) {
   //   // Post array
   //   $posts_arr = array();
   //   // $posts_arr['data'] = array();
@@ -55,13 +55,13 @@
   //   // }
 
   //   // Turn to JSON & output
-  //  echo json_encode(
-  //    array('message' => 'Posts Found')
-  //  );
+    echo json_encode(
+     array('message' => 'Posts Found')
+    );
 
-  // } else {
+   } else {
   //   // No Posts
-  //  echo json_encode(
-  //    array('message' => 'Posts Not Found')
-  //   );
-  // }
+   echo json_encode(
+      array('message' => 'Posts Not Found')
+    );
+   } 
