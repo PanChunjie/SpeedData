@@ -26,7 +26,7 @@ class Post
         // Create query
         try {
             $query = "SELECT body
-                      FROM " . $this->table;
+                      FROM  $this->table";
             //$result = $conn->query($query);
             echo $query;
             $count = $this->conn->exec($query);
