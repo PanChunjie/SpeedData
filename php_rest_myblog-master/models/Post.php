@@ -80,38 +80,39 @@ class Post
     // Create Post
     public function create()
     {
-        try {
-            // Create query
-            $query = "INSERT INTO " . $this->table . "(body, created_at) VALUES(" . $this->body . "," . $this->time() . ")";
+        $created_at = time();
+        // Create query
+        $query = "INSERT INTO $this->table(body, created_at) VALUES( $this->body , $this->created_at)";
+        printf("query", $query);
+        // Create query
+       // $query = 'INSERT INTO ' . $this->table . ' SET title = :title, body = :body, author = :author, category_id = :category_id';
 
-            // Prepare statement
-            $this->conn->query($query);
-            echo json_encode(
-                array('message' => 'insert data')
-            );
-            // Clean data
-            // $this->title = htmlspecialchars(strip_tags($this->title));
-            // $this->body = htmlspecialchars(strip_tags($this->body));
-            // $this->author = htmlspecialchars(strip_tags($this->author));
-            // $this->category_id = htmlspecialchars(strip_tags($this->category_id));
+        // Prepare statement
+        $stmt = $this->conn->prepare($query);
+        printf("stmt", $stmt);
 
-            // Bind data
-            // $stmt->bindParam(':title', $this->title);
-            //$stmt->bindParam(':body', $this->body);
-            //$stmt->bindParam(':created_at', time());
-           // echo json_encode(
-           //     array('message' => '$stmt->bindParam')
-           // );
-            // $stmt->bindParam(':author', $this->author);
-            // $stmt->bindParam(':category_id', $this->category_id);
+        // // Clean data
+        // $this->title = htmlspecialchars(strip_tags($this->title));
+        // $this->body = htmlspecialchars(strip_tags($this->body));
+        // $this->author = htmlspecialchars(strip_tags($this->author));
+        // $this->category_id = htmlspecialchars(strip_tags($this->category_id));
 
-            // Execute query
-            
-        } catch (PDOException $e) {
-            echo 'Connection Error: ' . $e->getMessage();
-            return false;
+        // // Bind data
+        // $stmt->bindParam(':title', $this->title);
+        // $stmt->bindParam(':body', $this->body);
+        // $stmt->bindParam(':author', $this->author);
+        // $stmt->bindParam(':category_id', $this->category_id);
+
+        // Execute query
+        if ($stmt->execute()) {
+          printf("true");
+            return true;
         }
-        return true;
+
+        // Print error if something goes wrong
+        printf("Error: %s.\n", $stmt->error);
+
+        return false;
     }
 
     // Update Post
