@@ -2,19 +2,22 @@
   // Headers
   header('Access-Control-Allow-Origin: *');
  // header('Content-Type: application/json');
- // header('Access-Control-Allow-Methods: PUT');
+  header('Access-Control-Allow-Methods: PUT');
  // header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
- include_once '../../config/Database.php';
- // include_once '../../models/Post.php';
- $database = new Database();
+  include_once '../../config/Database.php';
+
+ 
+  include_once '../../models/Post.php';
+  $database = new Database();
   $db = $database->connect();
- // $data = trim(file_get_contents('php://input'));
-  $dataPOST = "This ";
-  file_put_contents("myxmlfile.xml", $dataPOST);
-  $xmlData = simplexml_load_string($dataPOST);    
+  print_r($db->connection_status());
+  //$data = trim(file_get_contents('php://input'));
+ // $dataPOST = "This ";
+ // file_put_contents("myxmlfile.xml", $dataPOST);
+ // $xmlData = simplexml_load_string($dataPOST);    
   
-  print_r($xmlData);
+ // print_r($xmlData);
   ?>
   <!-- // Instantiate DB & connect
   $database = new Database();

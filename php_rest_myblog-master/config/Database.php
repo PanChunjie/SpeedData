@@ -12,20 +12,24 @@
     public function connect() {
       // $this->conn = null;
       if($this->conn == null || $this->conn->connection_status() != 0){
-        print_r("connect database");
+        $this->conn = null;        
         try { 
-          $dsn = "pgsql:host=" . $host . ";port=" . $port . ";dbname=" . $db_name . ";user=" . $username . ";password =" . $password . ";";
-          $this->conn = new PDO($dsn, $username, $password);
+          $dsn = "pgsql:host=" . $this->host . ";port=" . $this->port . ";dbname=" . $this->db_name . ";user=" . $this->username . ";password =" . $this->password . ";";
+          $this->conn = new PDO($dsn, $this->username, $this->password);
           $this->conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
           $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+          print_r("database connected");
         } catch(PDOException $e) {
           echo 'Connection Error: ' . $e->getMessage();
         }
       }else{
-        print_r("connect database");
+        print_r("database not connected");
       }
       
 
       return $this->conn;
     }
   }
+
+  $database = new Database();
+  $db = $database->connect();

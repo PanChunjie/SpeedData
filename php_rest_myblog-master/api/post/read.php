@@ -5,30 +5,33 @@
   echo json_encode(
     array('message' => 'Posts Found')
   );
- // include_once '../../config/Database.php';
- // include_once '../../models/Post.php';
-  
+  include_once '../../config/Database.php';
+  include_once '../../models/Post.php';
+ // include_once 'D:/School1111111111111/Coop2019/Summer/web/speeddata/php_rest_myblog-master/config/Database.php';
+//  include_once 'D:/School1111111111111/Coop2019/Summer/web/speeddata/php_rest_myblog-master/models/Post.php';
   //  $html = "";
-    $xmlstr = simplexml_load_file("http://api.openweathermap.org/data/2.5/weather?zip=45220,us&APPID=8ea80fceb1c77f7b6e101fd61bf5076c&mode=xml");
-
+//  $url = "http://api.openweathermap.org/data/2.5/weather?zip=45220,us&APPID=8ea80fceb1c77f7b6e101fd61bf5076c&mode=xml";
+    //$xmlstr = simplexml_load_file("http://api.openweathermap.org/data/2.5/weather?zip=45220,us&APPID=8ea80fceb1c77f7b6e101fd61bf5076c&mode=xml");
+ //   $xmlstr = file_get_contents($url);
   //  $xmlobj = new SimpleXMLElement($xmlstr);
   //  $xmlobj = (array)$xmlobj;//optional
    // $xml = simplexml_load_file($url);
-    print_r($xmlstr);
+  //  print_r($xmlstr);
   
   // print_r('asda');
   
  // echo $url;
   // Instantiate DB & connect
- // $database = new Database();
- // $db = $database->connect();
+  $database = new Database();
+  $db = $database->connect();
 
   // Instantiate blog post object
- // $post = new Post($db);
+  $post = new Post($db);
 
   // Blog post query
- // $result = $post->read();
+  $result = $post->read();
   // Get row count
+  $num = $result->rowCount();
    $num = 5;
 
    // // Check if any posts
@@ -55,9 +58,11 @@
   //   // }
 
   //   // Turn to JSON & output
-    echo json_encode(
-     array('message' => 'Posts Found')
-    );
+  $result->fetch();
+  print_r($result);
+    // echo json_encode(
+    //  array('message' => 'Posts Found')
+    // );
 
    } else {
   //   // No Posts

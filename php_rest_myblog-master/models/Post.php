@@ -2,7 +2,7 @@
   class Post {
     // DB stuff
     private $conn;
-    private $table = 'posts';
+    private $table = 'SpeedData_UC_OH';
 
     // Post Properties
     public $id;
@@ -21,20 +21,18 @@
     // Get Posts
     public function read() {
       // Create query
-      $query = 'SELECT c.name as category_name, p.id, p.category_id, p.title, p.body, p.author, p.created_at
-                                FROM ' . $this->table . ' p
-                                LEFT JOIN
-                                  categories c ON p.category_id = c.id
-                                ORDER BY
-                                  p.created_at DESC';
-      
+      try{
+      $query = 'SELECT body 
+                      FROM ' . $this->table;     
       // Prepare statement
       $stmt = $this->conn->prepare($query);
-
       // Execute query
       $stmt->execute();
-
+    } catch(PDOException $e) {
+      echo 'Connection Error: ' . $e->getMessage();
+    }
       return $stmt;
+      
     }
 
     // Get Single Post
@@ -70,22 +68,22 @@
     // Create Post
     public function create() {
           // Create query
-          $query = 'INSERT INTO ' . $this->table . ' SET title = :title, body = :body, author = :author, category_id = :category_id';
+          $query = 'INSERT INTO ' . $this->table . ' body = :body';
 
           // Prepare statement
           $stmt = $this->conn->prepare($query);
 
           // Clean data
-          $this->title = htmlspecialchars(strip_tags($this->title));
-          $this->body = htmlspecialchars(strip_tags($this->body));
-          $this->author = htmlspecialchars(strip_tags($this->author));
-          $this->category_id = htmlspecialchars(strip_tags($this->category_id));
+          // $this->title = htmlspecialchars(strip_tags($this->title));
+          // $this->body = htmlspecialchars(strip_tags($this->body));
+          // $this->author = htmlspecialchars(strip_tags($this->author));
+          // $this->category_id = htmlspecialchars(strip_tags($this->category_id));
 
           // Bind data
-          $stmt->bindParam(':title', $this->title);
+          // $stmt->bindParam(':title', $this->title);
           $stmt->bindParam(':body', $this->body);
-          $stmt->bindParam(':author', $this->author);
-          $stmt->bindParam(':category_id', $this->category_id);
+          // $stmt->bindParam(':author', $this->author);
+          // $stmt->bindParam(':category_id', $this->category_id);
 
           // Execute query
           if($stmt->execute()) {
