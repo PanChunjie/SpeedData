@@ -18,7 +18,9 @@
   // Get raw posted data
   //$data = json_decode(file_get_contents("php://input"));
   $data = file_get_contents($url);
- 
+  echo json_encode(
+    array('message' => '$data = file_get_contents($url);')
+  );
   $post->body = $data;
   
   // Create post

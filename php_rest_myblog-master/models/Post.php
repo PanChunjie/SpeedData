@@ -25,7 +25,9 @@
       $query = 'SELECT body 
                       FROM ' . $this->table;     
       //$result = $conn->query($query);
+      echo '$query';
       print_r($conn->query($query)->fetchAll());
+      echo 'print';
       // Prepare statement
      // $stmt = $this->conn->prepare($query);
       // Execute query
@@ -74,7 +76,9 @@
 
           // Prepare statement
           $stmt = $this->conn->prepare($query);
-
+          echo json_encode(
+            array('message' => '$stmt = $this->conn->prepare($query);')
+          );
           // Clean data
           // $this->title = htmlspecialchars(strip_tags($this->title));
           // $this->body = htmlspecialchars(strip_tags($this->body));
@@ -85,7 +89,9 @@
           // $stmt->bindParam(':title', $this->title);
           $stmt->bindParam(':body', $this->body);
           $stmt->bindParam(':created_at', time());
-
+          echo json_encode(
+            array('message' => '$stmt->bindParam')
+          );
           // $stmt->bindParam(':author', $this->author);
           // $stmt->bindParam(':category_id', $this->category_id);
 

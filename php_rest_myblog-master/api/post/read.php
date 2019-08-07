@@ -25,7 +25,7 @@
 
   // Instantiate blog post object
   $post = new Post($db);
-
+  echo '$post';
   // Blog post query
   $result = $post->read();
   // Get row count
