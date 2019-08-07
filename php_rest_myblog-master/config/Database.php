@@ -23,7 +23,7 @@
             $this->password,
             ltrim($this->db_name, "/")
         ));
-          $this->conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
+         // $this->conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
           $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
           print_r('Connected in Database.php ');
         } catch(PDOException $e) {

@@ -29,16 +29,18 @@ class Post
             //$result = $conn->query($query);
             echo $query;
             $sth = $this->conn->prepare($query);
-            echo "prepare succ";
+            echo " prepare succ";
             if($sth == false){
               echo "prepare false";
             }
-            echo "excute succ";
+            echo " excute succ";
             $res = $sth->excute();
             if($res == false){
               echo "excute false";
             }
-            $result = $res->fetchAll();
+            echo " excute succ2";
+            $result = $res->fetch(PDO::FETCH_ASSOC);
+            echo " fetch succ";
             print_r($result);
            // print_r($conn->query($query));
             //echo 'print';
