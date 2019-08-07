@@ -19,6 +19,7 @@
           $this->conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
           $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
           print_r("database connected 1");
+          print_r($this->conn->connection_status());
         } catch(PDOException $e) {
           echo 'Connection Error: ' . $e->getMessage();
         }

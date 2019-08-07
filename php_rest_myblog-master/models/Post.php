@@ -26,8 +26,12 @@
                       FROM ' . $this->table;     
       //$result = $conn->query($query);
       echo '$query';
-      print_r($conn->query($query)->fetchAll());
+      print_r($conn->query($query));
       echo 'print';
+      foreach ($conn->query($query) as $row) {
+        echo $row['body'];
+     }
+     echo 'foreach';
       // Prepare statement
      // $stmt = $this->conn->prepare($query);
       // Execute query
