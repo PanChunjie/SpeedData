@@ -25,21 +25,20 @@ class Post
     {
         // Create query
         try {
-            $query = "SELECT body FROM $this->table";
+            $query = "SELECT body FROM ?";
             //$result = $conn->query($query);
             echo $query;
             $sth = $this->conn->prepare($query);
+            $sth->bindParam(1, $this->table);
             echo " prepare succ";
             if($sth == false){
               echo "prepare false";
             }
             echo " excute succ";
-            $res = $sth->excute();
-            if($res == false){
-              echo "excute false";
-            }
+            $sth->excute();
+            
             echo " excute succ2";
-            $result = $res->fetch(PDO::FETCH_ASSOC);
+            $result = $sth->fetch(PDO::FETCH_ASSOC);
             echo " fetch succ";
             print_r($result);
            // print_r($conn->query($query));
