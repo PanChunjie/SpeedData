@@ -30,10 +30,14 @@
   $result = $post->read();
   // Get row count
   $num = $result->rowCount();
-   $num = 5;
+  
 
    // // Check if any posts
    if($num > 0) {
+    $row = $result->fetch(PDO::FETCH_ASSOC);
+    print_r($row);
+    print_r($row[body]);
+
   //   // Post array
   //   $posts_arr = array();
   //   // $posts_arr['data'] = array();

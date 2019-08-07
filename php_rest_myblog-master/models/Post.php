@@ -24,43 +24,14 @@ class Post
     public function read()
     {
         // Create query
-        try {
-            $query = "SELECT body FROM SpeedData_UC_OH";
-            //$result = $conn->query($query);
-            echo $query;
-            $sth = $this->conn->prepare($query);
-           // $sth->bindParam(1, $this->table);
-            echo " prepare succ";
-            
-            if ($sth->execute()) {
-              echo " excute succ2";
-              $result = $sth->fetch(PDO::FETCH_ASSOC);
-              echo " fetch succ";
-              print_r($result);
-              return true;
-          }
-          echo " excute false2";
-          // Print error if something goes wrong
-          printf("Error: %s.\n", $sth->error);
-            
-            
-           // print_r($conn->query($query));
-            //echo 'print';
-           // foreach ($conn->query($query) as $row) {
-            //    echo $row['body'];
-           // }
-           // echo 'foreach';
-            // Prepare statement
-            // $stmt = $this->conn->prepare($query);
-            // Execute query
-            //  $stmt->execute();
-        } catch (PDOException $e) {
-            echo 'Connection Error: ' . $e->getMessage();
-        }catch (Exception $e) {
-          echo "General Error: The user could not be added.<br>".$e->getMessage();
-        }
-        return $stmt;
-
+        $query = "SELECT body FROM SpeedData_UC_OH";
+        //$result = $conn->query($query);
+      
+        $sth = $this->conn->prepare($query);
+        // $sth->bindParam(1, $this->table);
+        $sth->execute();
+            // $result = $sth->fetch(PDO::FETCH_ASSOC);
+        return $sth;
     }
 
     // Get Single Post
@@ -100,22 +71,22 @@ class Post
         $this->created_at = date('Y-m-d G:i:s');
         // Create query
         $query = "INSERT INTO $this->table(body, created_at) VALUES('$this->body' , '$this->created_at')";
-        echo "query ". $query;
+        echo "query " . $query;
         $count = $this->conn->exec($query);
-        echo "count ". $count;
-        if($count == 0){
-          return false;
-        }else{
-          echo "count ". $count;
-          return true;
+        echo "count " . $count;
+        if ($count == 0) {
+            return false;
+        } else {
+            echo "count " . $count;
+            return true;
         }
-        
+
         // Create query
-       // $query = 'INSERT INTO ' . $this->table . ' SET title = :title, body = :body, author = :author, category_id = :category_id';
+        // $query = 'INSERT INTO ' . $this->table . ' SET title = :title, body = :body, author = :author, category_id = :category_id';
 
         // Prepare statement
-      //  $stmt = $this->conn->prepare($query);
-     //   printf("stmt ". $stmt);
+        //  $stmt = $this->conn->prepare($query);
+        //   printf("stmt ". $stmt);
 
         // // Clean data
         // $this->title = htmlspecialchars(strip_tags($this->title));
@@ -130,13 +101,13 @@ class Post
         // $stmt->bindParam(':category_id', $this->category_id);
 
         // Execute query
-     //   if ($stmt->execute()) {
-       //   printf("true");
-       //     return true;
-      //  }
+        //   if ($stmt->execute()) {
+        //   printf("true");
+        //     return true;
+        //  }
 
         // Print error if something goes wrong
-      //  printf("Error: %s.\n", $stmt->error);
+        //  printf("Error: %s.\n", $stmt->error);
 
         //return true;
     }
