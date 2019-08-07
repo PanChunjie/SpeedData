@@ -84,7 +84,7 @@ class Post
     {
         $this->created_at = date('Y-m-d G:i:s');
         // Create query
-        $query = "INSERT INTO $this->table(body, created_at) VALUES(' $this->body' , $this->created_at)";
+        $query = "INSERT INTO $this->table(body, created_at) VALUES('$this->body' , '$this->created_at')";
         echo "query ". $query;
         $count = $this->conn->exec($query);
         echo "count ". $count;
