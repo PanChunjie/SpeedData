@@ -5,13 +5,14 @@
   header('Access-Control-Allow-Methods: POST');
   header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
-  include_once '../../config/Database.php';
-  include_once '../../models/Post.php';
+ // include_once '../../config/Database.php';
+ // include_once '../../models/Post.php';
+ include_once 'D:/School1111111111111/Coop2019/Summer/web/speeddata/php_rest_myblog-master/models/Post.php ';
   $url = "http://api.openweathermap.org/data/2.5/weather?zip=45220,us&APPID=8ea80fceb1c77f7b6e101fd61bf5076c&mode=xml";
   // Instantiate DB & connect
-  $database = new Database();
-  $db = $database->connect();
-
+ // $database = new Database();
+ // $db = $database->connect();
+$db = 3;
   // Instantiate blog post object
   $post = new Post($db);
 

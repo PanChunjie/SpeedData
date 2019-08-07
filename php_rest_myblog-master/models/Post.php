@@ -85,13 +85,22 @@ class Post
         $this->created_at = date('Y-m-d G:i:s');
         // Create query
         $query = "INSERT INTO $this->table(body, created_at) VALUES(' $this->body' , $this->created_at)";
-        printf("query ".$query);
+        echo "query ". $query;
+        $count = $this->conn->exec($query);
+        echo "count ". $count;
+        if($count == 0){
+          return false;
+        }else{
+          echo "count ". $count;
+          return true;
+        }
+        
         // Create query
        // $query = 'INSERT INTO ' . $this->table . ' SET title = :title, body = :body, author = :author, category_id = :category_id';
 
         // Prepare statement
-        $stmt = $this->conn->prepare($query);
-        printf("stmt ". $stmt);
+      //  $stmt = $this->conn->prepare($query);
+     //   printf("stmt ". $stmt);
 
         // // Clean data
         // $this->title = htmlspecialchars(strip_tags($this->title));
@@ -106,15 +115,15 @@ class Post
         // $stmt->bindParam(':category_id', $this->category_id);
 
         // Execute query
-        if ($stmt->execute()) {
-          printf("true");
-            return true;
-        }
+     //   if ($stmt->execute()) {
+       //   printf("true");
+       //     return true;
+      //  }
 
         // Print error if something goes wrong
-        printf("Error: %s.\n", $stmt->error);
+      //  printf("Error: %s.\n", $stmt->error);
 
-        return false;
+        //return true;
     }
 
     // Update Post
