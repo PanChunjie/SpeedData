@@ -37,6 +37,3 @@
       return $this->conn;
     }
   }
-
-  $db = new Database();
-  $db->connect();

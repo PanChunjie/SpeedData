@@ -28,13 +28,15 @@ class Post
             $query = "SELECT body
                       FROM " . $this->table;
             //$result = $conn->query($query);
-            echo '$query';
-            print_r($conn->query($query));
-            echo 'print';
-            foreach ($conn->query($query) as $row) {
-                echo $row['body'];
-            }
-            echo 'foreach';
+            echo $query;
+            $count = $this->conn->exec($query);
+            echo "count ". $count;
+           // print_r($conn->query($query));
+            //echo 'print';
+           // foreach ($conn->query($query) as $row) {
+            //    echo $row['body'];
+           // }
+           // echo 'foreach';
             // Prepare statement
             // $stmt = $this->conn->prepare($query);
             // Execute query
@@ -80,16 +82,16 @@ class Post
     // Create Post
     public function create()
     {
-        $created_at = time();
+        $this->created_at = date('Y-m-d G:i:s');
         // Create query
-        $query = "INSERT INTO $this->table(body, created_at) VALUES( $this->body , $this->created_at)";
-        printf("query", $query);
+        $query = "INSERT INTO $this->table(body, created_at) VALUES(' $this->body' , $this->created_at)";
+        printf("query ".$query);
         // Create query
        // $query = 'INSERT INTO ' . $this->table . ' SET title = :title, body = :body, author = :author, category_id = :category_id';
 
         // Prepare statement
         $stmt = $this->conn->prepare($query);
-        printf("stmt", $stmt);
+        printf("stmt ". $stmt);
 
         // // Clean data
         // $this->title = htmlspecialchars(strip_tags($this->title));
