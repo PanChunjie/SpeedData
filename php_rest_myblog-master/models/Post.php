@@ -25,12 +25,13 @@ class Post
     {
         // Create query
         try {
-            $query = "SELECT body
-                      FROM  $this->table";
+            $query = "SELECT body FROM $this->table";
             //$result = $conn->query($query);
             echo $query;
-            $count = $this->conn->exec($query);
-            echo "count ". $count;
+            $sth = $this->conn->prepare($query);
+            $sth->excute();
+            $result = $sth->fetchAll();
+            print_r($result);
            // print_r($conn->query($query));
             //echo 'print';
            // foreach ($conn->query($query) as $row) {
