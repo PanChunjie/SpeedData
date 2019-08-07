@@ -29,9 +29,11 @@ class Post
             //$result = $conn->query($query);
             echo $query;
             $sth = $this->conn->prepare($query);
+            echo "prepare succ";
             if($sth == false){
               echo "prepare false";
             }
+            echo "excute succ";
             $res = $sth->excute();
             if($res == false){
               echo "excute false";
@@ -50,6 +52,8 @@ class Post
             //  $stmt->execute();
         } catch (PDOException $e) {
             echo 'Connection Error: ' . $e->getMessage();
+        }catch (Exception $e) {
+          echo "General Error: The user could not be added.<br>".$e->getMessage();
         }
         return $stmt;
 

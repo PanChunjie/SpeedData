@@ -4,22 +4,20 @@
  // header('Content-Type: application/json');
   header('Access-Control-Allow-Methods: PUT');
  // header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods, Authorization, X-Requested-With');
-$body = 'asda';
-$time = time();
-$table = 'test';
- // include_once '../../config/Database.php';
- $query = "INSERT INTO " . $table . "(body, created_at) VALUES('asd,' ". $time . ")";
- print_r($query);
- // include_once '../../models/Post.php';
- // $database = new Database();
- // $db = $database->connect();
- // print_r($db->connection_status());
+
+ include_once '../../config/Database.php';
+
+ 
+ include_once '../../models/Post.php';
+  $database = new Database();
+  $db = $database->connect();
+  print_r($db->connection_status());
   //$data = trim(file_get_contents('php://input'));
- // $dataPOST = "This ";
- // file_put_contents("myxmlfile.xml", $dataPOST);
- // $xmlData = simplexml_load_string($dataPOST);    
+  $dataPOST = "This ";
+  file_put_contents("myxmlfile.xml", $dataPOST);
+  $xmlData = simplexml_load_string($dataPOST);    
   
- // print_r($xmlData);
+  print_r($xmlData);
   ?>
   <!-- // Instantiate DB & connect
   $database = new Database();
