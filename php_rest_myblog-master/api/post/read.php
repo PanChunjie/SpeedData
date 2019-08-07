@@ -2,9 +2,7 @@
   // Headers
   header('Access-Control-Allow-Origin: *');
   header('Content-Type: application/json');
-  echo json_encode(
-    array('message' => 'Posts Found')
-  );
+  
   include_once '../../config/Database.php';
   include_once '../../models/Post.php';
  // include_once 'D:/School1111111111111/Coop2019/Summer/web/speeddata/php_rest_myblog-master/config/Database.php';
@@ -58,8 +56,8 @@
   //   // }
 
   //   // Turn to JSON & output
-  $result->fetch();
-  print_r($result);
+  //$result->fetch();
+  print_r($result['body']);
     // echo json_encode(
     //  array('message' => 'Posts Found')
     // );
