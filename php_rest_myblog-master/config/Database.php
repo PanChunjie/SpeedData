@@ -14,7 +14,9 @@
       if($this->conn == null || $this->conn->connection_status() != 0){
         print_r("connect database");
         try { 
-          $this->conn = new PDO('mysql:host=' . $this->host . ';dbname=' . $this->db_name, $this->username, $this->password);
+          $dsn = "pgsql:host=" . $host . ";port=" . $port . ";dbname=" . $db_name . ";user=" . $username . ";password =" . $password . ";";
+          $this->conn = new PDO($dsn, $username, $password);
+          $this->conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
           $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         } catch(PDOException $e) {
           echo 'Connection Error: ' . $e->getMessage();
