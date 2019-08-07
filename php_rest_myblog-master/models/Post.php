@@ -7,11 +7,7 @@ class Post
 
     // Post Properties
     public $id;
-    public $category_id;
-    public $category_name;
-    public $title;
-    public $body;
-    public $author;
+    public $body; 
     public $created_at;
 
     // Constructor with DB
@@ -115,26 +111,24 @@ class Post
     // Update Post
     public function update()
     {
+        $this->created_at = date('Y-m-d G:i:s');
         // Create query
         $query = 'UPDATE ' . $this->table . '
-                                SET title = :title, body = :body, author = :author, category_id = :category_id
+                                SET body = :body, created_at = :created_at
                                 WHERE id = :id';
 
         // Prepare statement
         $stmt = $this->conn->prepare($query);
 
         // Clean data
-        $this->title = htmlspecialchars(strip_tags($this->title));
-        $this->body = htmlspecialchars(strip_tags($this->body));
-        $this->author = htmlspecialchars(strip_tags($this->author));
-        $this->category_id = htmlspecialchars(strip_tags($this->category_id));
+       
+        $this->body = htmlspecialchars(strip_tags($this->body));      
         $this->id = htmlspecialchars(strip_tags($this->id));
 
         // Bind data
-        $stmt->bindParam(':title', $this->title);
+      
         $stmt->bindParam(':body', $this->body);
-        $stmt->bindParam(':author', $this->author);
-        $stmt->bindParam(':category_id', $this->category_id);
+        $stmt->bindParam(':created_at', $this->created_at);
         $stmt->bindParam(':id', $this->id);
 
         // Execute query

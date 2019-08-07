@@ -5,20 +5,7 @@
   
   include_once '../../config/Database.php';
   include_once '../../models/Post.php';
- // include_once 'D:/School1111111111111/Coop2019/Summer/web/speeddata/php_rest_myblog-master/config/Database.php';
-//  include_once 'D:/School1111111111111/Coop2019/Summer/web/speeddata/php_rest_myblog-master/models/Post.php';
-  //  $html = "";
-//  $url = "http://api.openweathermap.org/data/2.5/weather?zip=45220,us&APPID=8ea80fceb1c77f7b6e101fd61bf5076c&mode=xml";
-    //$xmlstr = simplexml_load_file("http://api.openweathermap.org/data/2.5/weather?zip=45220,us&APPID=8ea80fceb1c77f7b6e101fd61bf5076c&mode=xml");
- //   $xmlstr = file_get_contents($url);
-  //  $xmlobj = new SimpleXMLElement($xmlstr);
-  //  $xmlobj = (array)$xmlobj;//optional
-   // $xml = simplexml_load_file($url);
-  //  print_r($xmlstr);
-  
-  // print_r('asda');
-  
- // echo $url;
+ 
   // Instantiate DB & connect
   $database = new Database();
   $db = $database->connect();
@@ -37,34 +24,6 @@
     $row = $result->fetch(PDO::FETCH_ASSOC);
     print_r($row);
     print_r($row[body]);
-
-  //   // Post array
-  //   $posts_arr = array();
-  //   // $posts_arr['data'] = array();
-
-  //   // while($row = $result->fetch(PDO::FETCH_ASSOC)) {
-  //   //   extract($row);
-
-  //   //   $post_item = array(
-  //   //     'id' => $id,
-  //   //     'title' => $title,
-  //   //     'body' => html_entity_decode($body),
-  //   //     'author' => $author,
-  //   //     'category_id' => $category_id,
-  //   //     'category_name' => $category_name
-  //   //   );
-
-  //   //   // Push to "data"
-  //   //   array_push($posts_arr, $post_item);
-  //   //   // array_push($posts_arr['data'], $post_item);
-  //   // }
-
-  //   // Turn to JSON & output
-  //$result->fetch();
-  print_r("lt 0");
-    // echo json_encode(
-    //  array('message' => 'Posts Found')
-    // );
 
    } else {
   //   // No Posts
