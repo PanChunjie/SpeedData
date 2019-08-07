@@ -25,22 +25,25 @@ class Post
     {
         // Create query
         try {
-            $query = "SELECT body FROM ?";
+            $query = "SELECT body FROM SpeedData_UC_OH";
             //$result = $conn->query($query);
             echo $query;
             $sth = $this->conn->prepare($query);
-            $sth->bindParam(1, $this->table);
+           // $sth->bindParam(1, $this->table);
             echo " prepare succ";
-            if($sth == false){
-              echo "prepare false";
-            }
-            echo " excute succ";
-            $sth->excute();
             
-            echo " excute succ2";
-            $result = $sth->fetch(PDO::FETCH_ASSOC);
-            echo " fetch succ";
-            print_r($result);
+            if ($sth->execute()) {
+              echo " excute succ2";
+              $result = $sth->fetch(PDO::FETCH_ASSOC);
+              echo " fetch succ";
+              print_r($result);
+              return true;
+          }
+          echo " excute false2";
+          // Print error if something goes wrong
+          printf("Error: %s.\n", $sth->error);
+            
+            
            // print_r($conn->query($query));
             //echo 'print';
            // foreach ($conn->query($query) as $row) {
