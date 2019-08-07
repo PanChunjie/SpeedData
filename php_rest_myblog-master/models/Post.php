@@ -29,8 +29,14 @@ class Post
             //$result = $conn->query($query);
             echo $query;
             $sth = $this->conn->prepare($query);
-            $sth->excute();
-            $result = $sth->fetchAll();
+            if($sth == false){
+              echo "prepare false";
+            }
+            $res = $sth->excute();
+            if($res == false){
+              echo "excute false";
+            }
+            $result = $res->fetchAll();
             print_r($result);
            // print_r($conn->query($query));
             //echo 'print';
