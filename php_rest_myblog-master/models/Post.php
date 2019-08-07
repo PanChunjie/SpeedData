@@ -24,10 +24,12 @@
       try{
       $query = 'SELECT body 
                       FROM ' . $this->table;     
+      //$result = $conn->query($query);
+      print_r($conn->query($query)->fetchAll());
       // Prepare statement
-      $stmt = $this->conn->prepare($query);
+     // $stmt = $this->conn->prepare($query);
       // Execute query
-      $stmt->execute();
+    //  $stmt->execute();
     } catch(PDOException $e) {
       echo 'Connection Error: ' . $e->getMessage();
     }
@@ -68,7 +70,7 @@
     // Create Post
     public function create() {
           // Create query
-          $query = 'INSERT INTO ' . $this->table . ' body = :body';
+          $query = 'INSERT INTO ' . $this->table . ' body = :body, created_at = :created_at';
 
           // Prepare statement
           $stmt = $this->conn->prepare($query);
@@ -82,6 +84,8 @@
           // Bind data
           // $stmt->bindParam(':title', $this->title);
           $stmt->bindParam(':body', $this->body);
+          $stmt->bindParam(':created_at', time());
+
           // $stmt->bindParam(':author', $this->author);
           // $stmt->bindParam(':category_id', $this->category_id);
 

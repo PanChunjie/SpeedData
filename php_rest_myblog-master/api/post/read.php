@@ -57,7 +57,7 @@
 
   //   // Turn to JSON & output
   //$result->fetch();
-  print_r($result['body']);
+  print_r("lt 0");
     // echo json_encode(
     //  array('message' => 'Posts Found')
     // );

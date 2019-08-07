@@ -18,7 +18,7 @@
           $this->conn = new PDO($dsn, $this->username, $this->password);
           $this->conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
           $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-          print_r("database connected");
+          print_r("database connected 1");
         } catch(PDOException $e) {
           echo 'Connection Error: ' . $e->getMessage();
         }
@@ -31,5 +31,4 @@
     }
   }
 
-  $database = new Database();
-  $db = $database->connect();
+  
