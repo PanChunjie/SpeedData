@@ -1,9 +1,9 @@
 <?php
-class user
+class UserInfo
 {
     // DB stuff
     private $conn;
-    private $table = 'user';
+    private $table = 'UserInfo';
 
     // Properties
     public $id;
@@ -23,7 +23,7 @@ class user
     // Get Posts
     public function checkPassword()
     {
-        $query = "SELECT userpassword, isposter, isreader, isadmin FROM user where username = ?";
+        $query = "SELECT userpassword, isposter, isreader, isadmin FROM UserInfo where username = ?";
         $sth = $this->conn->prepare($query);
         echo "query";
         $stmt->bindParam(1, $this->username);
