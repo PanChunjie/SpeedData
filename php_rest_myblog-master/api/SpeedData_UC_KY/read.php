@@ -4,14 +4,14 @@
   header('Content-Type: application/json');
   header('Access-Control-Allow-Methods: GET');
   include_once '../../config/Database.php';
-  include_once '../../models/SpeedData_UC_OH.php';
+  include_once '../../models/SpeedData_UC_KY.php';
  
   // Instantiate DB & connect
   $database = new Database();
   $db = $database->connect();
 
   // Instantiate blog post object
-  $post = new SpeedData_UC_OH($db);
+  $post = new SpeedData_UC_KY($db);
 
   // Blog post query
   $result = $post->read();
@@ -29,6 +29,6 @@
    } else {
   //   // No Posts
    echo json_encode(
-      array('message' => 'SpeedData_UC_OH Not Found')
+      array('message' => 'Posts Not Found')
     );
    } 

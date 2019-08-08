@@ -6,7 +6,7 @@
   header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
  include_once '../../config/Database.php';
- include_once '../../models/SpeedData_UC_OH.php';
+ include_once '../../models/SpeedData_UC_KY.php';
 
   
   // Instantiate DB & connect
@@ -14,7 +14,7 @@
   $db = $database->connect();
 
   // Instantiate blog post object
-  $post = new SpeedData_UC_OH($db);
+  $post = new SpeedData_UC_KY($db);
 
   // Get raw posted data
   $data = trim(file_get_contents('php://input'));
@@ -25,11 +25,11 @@
   // Update post
   if($post->update()) {
     echo json_encode(
-      array('message' => 'SpeedData_UC_OH Updated')
+      array('message' => 'SpeedData_UC_KY Updated')
     );
   } else {
     echo json_encode(
-      array('message' => 'SpeedData_UC_OH Not Updated')
+      array('message' => 'SpeedData_UC_KY Not Updated')
     );
   } 
 

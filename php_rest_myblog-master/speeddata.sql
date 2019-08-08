@@ -1,10 +1,16 @@
 DROP TABLE IF EXISTS SpeedData_UC_OH;
 CREATE TABLE SpeedData_UC_OH (
-  id SERIAL,
+  id int,
   body xml NOT NULL,
   created_at timestamp  NOT NULL
 );
 
+DROP TABLE IF EXISTS SpeedData_UC_KY;
+CREATE TABLE SpeedData_UC_KY (
+  id int,
+  body xml NOT NULL,
+  created_at timestamp  NOT NULL
+);
 -- CREATE TABLE `categories` (
 --   `id` int(11) NOT NULL AUTO_INCREMENT,
 --   `name` varchar(255) NOT NULL,
