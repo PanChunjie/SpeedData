@@ -1,9 +1,9 @@
 <?php
-class SpeedData_UC_OH
+class SpeedData_UC_KY
 {
     // DB stuff
     private $conn;
-    private $table = 'SpeedData_UC_OH';
+    private $table = 'SpeedData_UC_KY';
 
     // Post Properties
     public $id;
@@ -20,10 +20,11 @@ class SpeedData_UC_OH
     public function read()
     {
         // Create query
-        $query = "SELECT body FROM SpeedData_UC_OH where id = 1";
+        $query = "SELECT body FROM SpeedData_UC_KY where id = 1";
         //$result = $conn->query($query);
-      
+        print_r( "query");
         $sth = $this->conn->prepare($query);
+        print_r( "prepare");
         // $sth->bindParam(1, $this->table);
         $sth->execute();
             // $result = $sth->fetch(PDO::FETCH_ASSOC);

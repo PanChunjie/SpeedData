@@ -12,18 +12,19 @@
 
   // Instantiate blog post object
   $post = new SpeedData_UC_KY($db);
-
+  print_r( "First");
   // Blog post query
-  $result = $post->read();
+ // $result = $post->read();
+  print_r( "read");
   // Get row count
-  $num = $result->rowCount();
+ // $num = $result->rowCount();
   
-
+$num = 3;
    // // Check if any posts
    if($num > 0) {
-    $row = $result->fetch(PDO::FETCH_ASSOC);
+  //  $row = $result->fetch(PDO::FETCH_ASSOC);
     
-    print_r(htmlspecialchars_decode( $row[body]));
+  //  print_r(htmlspecialchars_decode( $row[body]));
     
 
    } else {
