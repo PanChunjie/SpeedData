@@ -1,7 +1,7 @@
 <?php
 // Headers
 header('Access-Control-Allow-Origin: *');
-header('Content-Type: application/json');
+// header('Content-Type: application/json');
 header('Access-Control-Allow-Methods: PUT');
 header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
@@ -17,17 +17,19 @@ $db = $database->connect();
 $user = new UserInfo($db);
 
 //Get raw data
-$data = json_decode(file_get_contents("php://input"));
-echo $data;
-$user->username = $data->username;
-$user->userpassword = $data->password;
-
+//$data = json_decode(file_get_contents("php://input"));
+//echo $data;
+//$user->username = $data->username;
+//$user->userpassword = $data->password;
+$user->username = 'admin';
+$user->userpassword = '!GXb)72L';
 
 //authentication
 if ($user->checkPassword()) {   
     if ($user->isposter || $user->isadmin) {
         $post = new SpeedData_UC_KY($db);
-        $post->body = $data->xml;
+        //$post->body = $data->xml;
+        $post->body = 'This is a default xml';
         $result = $post->update();
         $rownum = $result->rowCount();
         // Update post
