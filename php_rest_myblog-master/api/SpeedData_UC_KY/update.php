@@ -18,6 +18,7 @@ $user = new UserInfo($db);
 
 //Get raw data
 $data = json_decode(file_get_contents("php://input"));
+echo $data;
 $user->username = $data->username;
 $user->userpassword = $data->password;
 
