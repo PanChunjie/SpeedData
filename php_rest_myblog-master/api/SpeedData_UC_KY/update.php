@@ -19,34 +19,6 @@ $user = new UserInfo($db);
 //Get raw data
 $data = json_decode(file_get_contents("php://input"));
 echo $data;
-$user->username = $data->username;
-$user->userpassword = $data->password;
 
-
-//authentication
-if ($user->checkPassword()) {   
-    if ($user->isposter || $user->isadmin) {
-        $post = new SpeedData_UC_KY($db);
-        $post->body = $data->xml;
-        $result = $post->update();
-        $rownum = $result->rowCount();
-        // Update post
-        if ($rownum == 0) {
-            echo "SpeedData_UC_KY doesn't have data at id=1, try to use create api";
-            // echo json_encode(
-            //   array('message' => 'SpeedData_UC_KY Not Updated')
-            // );
-        } else {
-            echo 'SpeedData_UC_KY Updated';
-            // echo json_encode(
-            //   array('message' => 'SpeedData_UC_KY Updated')
-            // );
-        }
-    }else{
-      echo "You don't have permission to update data;";
-    }
-} else {
-    echo "Your username and password don't match";
-}
 
 
