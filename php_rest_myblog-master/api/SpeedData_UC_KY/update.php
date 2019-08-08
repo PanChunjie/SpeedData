@@ -21,15 +21,18 @@
   // Set ID to update
  // $post->id = $data->id;
   $post->body = $data;
-
+  $result = $post->update();
+  $rownum = $result->rowCount();
   // Update post
-  if($post->update()) {
-    echo json_encode(
-      array('message' => 'SpeedData_UC_KY Updated')
-    );
+  if($rownum == 0) {
+    echo "SpeedData_UC_KY doesn't have data at id=1, try to use create api";
+    // echo json_encode(
+    //   array('message' => 'SpeedData_UC_KY Not Updated')
+    // );
   } else {
-    echo json_encode(
-      array('message' => 'SpeedData_UC_KY Not Updated')
-    );
+    echo 'SpeedData_UC_KY Updated';
+    // echo json_encode(
+    //   array('message' => 'SpeedData_UC_KY Updated')
+    // );
   } 
 

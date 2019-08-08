@@ -7,7 +7,7 @@ class SpeedData_UC_KY
 
     // Post Properties
     public $id;
-    public $body; 
+    public $body;
     public $created_at;
 
     // Constructor with DB
@@ -20,26 +20,23 @@ class SpeedData_UC_KY
     public function read()
     {
         // Create query
-        try{
         $query = "SELECT body FROM SpeedData_UC_KY where id = 1";
         //$result = $conn->query($query);
-        print_r( "query");
+
         $sth = $this->conn->prepare($query);
-        print_r( "prepare");
+
         // $sth->bindParam(1, $this->table);
-        
-        $sth->execute();
-            // $result = $sth->fetch(PDO::FETCH_ASSOC);
-            printf("Error: $s.\n", $sth->error);
-            $errors = $sth->errorInfo();
-            echo($errors[2]);
-        }catch(PDOException $e)
-        {
+
+        if($sth->execute()){
+            return $sth;
+        }else{
             printf("Error: $s.\n", $e->getMessage());
-            $errors = $stmt->errorInfo();
-            echo($errors[2]);
+            return $sth;
         }
-        return $sth;
+        // $result = $sth->fetch(PDO::FETCH_ASSOC);
+
+        
+       
     }
 
     // Get Single Post
@@ -79,17 +76,17 @@ class SpeedData_UC_KY
         $this->created_at = date('Y-m-d G:i:s');
         $this->id = 1;
         // Create query
-        $this->body = htmlspecialchars($this->body);      
+        $this->body = htmlspecialchars($this->body);
         $this->id = htmlspecialchars($this->id);
         $query = "INSERT INTO $this->table(id, body, created_at) VALUES($this->id, '$this->body' , '$this->created_at')";
         echo "query " . $query;
         $count = $this->conn->exec($query);
         echo "count " . $count;
         if ($count == 0) {
-            
+
             return false;
         } else {
-            print("Insert $count rows.\n");
+        
             return true;
         }
 
@@ -138,25 +135,26 @@ class SpeedData_UC_KY
         $stmt = $this->conn->prepare($query);
 
         // Clean data
-       
-        $this->body = htmlspecialchars($this->body);      
+
+        $this->body = htmlspecialchars($this->body);
         $this->id = htmlspecialchars($this->id);
 
         // Bind data
-      
+
         $stmt->bindParam(':body', $this->body);
         $stmt->bindParam(':created_at', $this->created_at);
         $stmt->bindParam(':id', $this->id);
 
         // Execute query
-        if ($stmt->execute()) {
-            return true;
+        if ($stmt->execute()) {            
+            return $stmt;
+        }else{
+            // Print error if something goes wrong
+            printf("Error: %s.\n", $stmt->error);
+            return $stmt;
         }
 
-        // Print error if something goes wrong
-        printf("Error: %s.\n", $stmt->error);
-
-        return false;
+        
     }
 
     // Delete Post

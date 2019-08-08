@@ -136,15 +136,14 @@ class SpeedData_UC_OH
         $stmt->bindParam(':created_at', $this->created_at);
         $stmt->bindParam(':id', $this->id);
 
-        // Execute query
-        if ($stmt->execute()) {
-            return true;
+         // Execute query
+         if ($stmt->execute()) {            
+            return $stmt;
+        }else{
+            // Print error if something goes wrong
+            printf("Error: %s.\n", $stmt->error);
+            return $stmt;
         }
-
-        // Print error if something goes wrong
-        printf("Error: %s.\n", $stmt->error);
-
-        return false;
     }
 
     // Delete Post
