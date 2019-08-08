@@ -3,6 +3,7 @@
   header('Access-Control-Allow-Origin: *');
   header('Content-Type: application/json');
   header('Access-Control-Allow-Methods: GET');
+
   include_once '../../config/Database.php';
   include_once '../../models/SpeedData_UC_OH.php';
  
@@ -26,7 +27,7 @@
     //print_r(htmlspecialchars_decode( $row[body]));
     $xml = new SimpleXMLElement($row[body]);
 
-    echo $string->asXML();
+    echo $xml->asXML();
 
    } else {
   //   // No Posts
