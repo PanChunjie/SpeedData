@@ -17,14 +17,14 @@
   $result = $post->read();
   print_r( "read");
   // Get row count
- // $num = $result->rowCount();
+  $num = $result->rowCount();
   
-$num = 3;
+  print_r( $num);
    // // Check if any posts
    if($num > 0) {
-  //  $row = $result->fetch(PDO::FETCH_ASSOC);
+    $row = $result->fetch(PDO::FETCH_ASSOC);
     
-  //  print_r(htmlspecialchars_decode( $row[body]));
+    print_r(htmlspecialchars_decode( $row[body]));
     
 
    } else {
