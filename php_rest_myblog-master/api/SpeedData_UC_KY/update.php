@@ -19,12 +19,11 @@ $user = new UserInfo($db);
 //Get raw data
 $data = json_decode(file_get_contents("php://input"));
 $user->username = $data->username;
-$user->userpassword = $data->body;
-$user->author = $data->xml;
+$user->userpassword = $data->password;
+
 
 //authentication
-if ($user->checkPassword()) {
-    $userpermisssion = $user->userpermission;
+if ($user->checkPassword()) {   
     if ($user->isposter || $user->isadmin) {
         $post = new SpeedData_UC_KY($db);
         $post->body = $data->xml;

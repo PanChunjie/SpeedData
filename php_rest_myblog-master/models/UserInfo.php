@@ -55,7 +55,7 @@ class user
 
     
 }
-echo password_hash("!GXb)72L", PASSWORD_DEFAULT);
+//echo password_hash("!GXb)72L", PASSWORD_DEFAULT);
 
 // if(password_verify('!Gb)72L', $result)){
 
