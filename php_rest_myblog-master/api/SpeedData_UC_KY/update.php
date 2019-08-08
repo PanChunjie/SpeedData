@@ -1,38 +1,52 @@
-<?php 
-  // Headers
-  header('Access-Control-Allow-Origin: *');
- // header('Content-Type: application/json');
-  header('Access-Control-Allow-Methods: PUT');
-  header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods, Authorization, X-Requested-With');
+<?php
+// Headers
+header('Access-Control-Allow-Origin: *');
+header('Content-Type: application/json');
+header('Access-Control-Allow-Methods: PUT');
+header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
- include_once '../../config/Database.php';
- include_once '../../models/SpeedData_UC_KY.php';
+include_once '../../config/Database.php';
+include_once '../../models/SpeedData_UC_KY.php';
+include_once '../../models/UserInfo.php';
 
-  
-  // Instantiate DB & connect
-  $database = new Database();
-  $db = $database->connect();
+// Instantiate DB & connect
+$database = new Database();
+$db = $database->connect();
 
-  // Instantiate blog post object
-  $post = new SpeedData_UC_KY($db);
+// Instantiate user object
+$user = new UserInfo($db);
 
-  // Get raw posted data
-  $data = trim(file_get_contents('php://input'));
-  // Set ID to update
- // $post->id = $data->id;
-  $post->body = $data;
-  $result = $post->update();
-  $rownum = $result->rowCount();
-  // Update post
-  if($rownum == 0) {
-    echo "SpeedData_UC_KY doesn't have data at id=1, try to use create api";
-    // echo json_encode(
-    //   array('message' => 'SpeedData_UC_KY Not Updated')
-    // );
-  } else {
-    echo 'SpeedData_UC_KY Updated';
-    // echo json_encode(
-    //   array('message' => 'SpeedData_UC_KY Updated')
-    // );
-  } 
+//Get raw data
+$data = json_decode(file_get_contents("php://input"));
+$user->username = $data->username;
+$user->userpassword = $data->body;
+$user->author = $data->xml;
+
+//authentication
+if ($user->checkPassword()) {
+    $userpermisssion = $user->userpermission;
+    if ($user->isposter || $user->isadmin) {
+        $post = new SpeedData_UC_KY($db);
+        $post->body = $data->xml;
+        $result = $post->update();
+        $rownum = $result->rowCount();
+        // Update post
+        if ($rownum == 0) {
+            echo "SpeedData_UC_KY doesn't have data at id=1, try to use create api";
+            // echo json_encode(
+            //   array('message' => 'SpeedData_UC_KY Not Updated')
+            // );
+        } else {
+            echo 'SpeedData_UC_KY Updated';
+            // echo json_encode(
+            //   array('message' => 'SpeedData_UC_KY Updated')
+            // );
+        }
+    }else{
+      echo "You don't have permission to update data;";
+    }
+} else {
+    echo "Your username and password don't match";
+}
+
 

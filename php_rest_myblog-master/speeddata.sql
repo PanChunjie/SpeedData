@@ -11,6 +11,27 @@ CREATE TABLE SpeedData_UC_KY (
   body xml NOT NULL,
   created_at timestamp  NOT NULL
 );
+
+DROP TABLE IF EXISTS UserInfo;
+CREATE TABLE UserInfo (
+  id SERIAL PRIMARY KEY,
+  user_name varchar(30) NOT NULL UNIQUE,
+  user_password varchar(255)  NOT NULL
+  is_poster BOOLEAN NOT NULL,
+  is_reader BOOLEAN NOT NULL,
+  is_admin BOOLEAN NOT NULL,
+  created_at timestamp,
+);
+
+CREATE TABLE User_Permissions (
+  id SERIAL PRIMARY KEY,
+  user_id int NOT NULL,
+  is_poster BOOLEAN NOT NULL,
+  is_reader BOOLEAN NOT NULL,
+  is_admin BOOLEAN NOT NULL,
+  created_at timestamp,
+
+);
 -- CREATE TABLE `categories` (
 --   `id` int(11) NOT NULL AUTO_INCREMENT,
 --   `name` varchar(255) NOT NULL,
