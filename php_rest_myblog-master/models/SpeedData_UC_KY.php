@@ -20,15 +20,25 @@ class SpeedData_UC_KY
     public function read()
     {
         // Create query
+        try{
         $query = "SELECT body FROM SpeedData_UC_KY where id = 1";
         //$result = $conn->query($query);
         print_r( "query");
         $sth = $this->conn->prepare($query);
         print_r( "prepare");
         // $sth->bindParam(1, $this->table);
+        
         $sth->execute();
             // $result = $sth->fetch(PDO::FETCH_ASSOC);
             printf("Error: $s.\n", $sth->error);
+            $errors = $sth->errorInfo();
+            echo($errors[2]);
+        }catch(PDOException $e)
+        {
+            printf("Error: $s.\n", $e->getMessage());
+            $errors = $stmt->errorInfo();
+            echo($errors[2]);
+        }
         return $sth;
     }
 
