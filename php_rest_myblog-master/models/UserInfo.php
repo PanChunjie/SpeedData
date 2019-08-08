@@ -23,10 +23,10 @@ class UserInfo
     // Get Posts
     public function checkPassword()
     {
-        $query = "SELECT userpassword, isposter, isreader, isadmin FROM UserInfo where username = ?";
+        $query = "SELECT user_password, is_poster, is_reader, is_admin FROM UserInfo where user_name = 'admin'";
         $sth = $this->conn->prepare($query);
         echo "query";
-        $stmt->bindParam(1, $this->username);
+       // $stmt->bindParam(1, $this->username);
         echo "bind";
         $sth->execute();
         echo "execute";
