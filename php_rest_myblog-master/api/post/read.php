@@ -22,8 +22,8 @@
    // // Check if any posts
    if($num > 0) {
     $row = $result->fetch(PDO::FETCH_ASSOC);
-    print_r($row);
-    print_r($row[body]);
+    
+    print_r(htmlspecialchars_decode( $row[body]));
 
    } else {
   //   // No Posts

@@ -20,7 +20,7 @@ class Post
     public function read()
     {
         // Create query
-        $query = "SELECT body FROM SpeedData_UC_OH";
+        $query = "SELECT body FROM SpeedData_UC_OH where id = 1";
         //$result = $conn->query($query);
       
         $sth = $this->conn->prepare($query);
@@ -65,8 +65,11 @@ class Post
     public function create()
     {
         $this->created_at = date('Y-m-d G:i:s');
+        $this->id = 1;
         // Create query
-        $query = "INSERT INTO $this->table(body, created_at) VALUES('$this->body' , '$this->created_at')";
+        $this->body = htmlspecialchars($this->body);      
+        $this->id = htmlspecialchars($this->id);
+        $query = "INSERT INTO $this->table(id, body, created_at) VALUES($this->id, '$this->body' , '$this->created_at')";
         echo "query " . $query;
         $count = $this->conn->exec($query);
         echo "count " . $count;
@@ -112,6 +115,7 @@ class Post
     public function update()
     {
         $this->created_at = date('Y-m-d G:i:s');
+        $this->id = 1;
         // Create query
         $query = 'UPDATE ' . $this->table . '
                                 SET body = :body, created_at = :created_at
@@ -122,8 +126,8 @@ class Post
 
         // Clean data
        
-        $this->body = htmlspecialchars(strip_tags($this->body));      
-        $this->id = htmlspecialchars(strip_tags($this->id));
+        $this->body = htmlspecialchars($this->body);      
+        $this->id = htmlspecialchars($this->id);
 
         // Bind data
       
