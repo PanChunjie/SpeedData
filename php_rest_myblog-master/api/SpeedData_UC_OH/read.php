@@ -24,7 +24,7 @@
     $row = $result->fetch(PDO::FETCH_ASSOC);
     
     //print_r(htmlspecialchars_decode( $row[body]));
-    //$xml = new SimpleXMLElement($string);
+    $xml = new SimpleXMLElement($row[body]);
 
     echo $string->asXML();
 
