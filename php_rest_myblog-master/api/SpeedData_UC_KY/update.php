@@ -17,19 +17,19 @@ $db = $database->connect();
 $user = new UserInfo($db);
 
 //Get raw data
-//$data = json_decode(file_get_contents("php://input"));
+$data = json_decode(file_get_contents("php://input"));
 //echo $data;
-//$user->username = $data->username;
-//$user->userpassword = $data->password;
-$user->username = 'admin';
-$user->userpassword = '!GXb)72L';
+$user->username = $data->username;
+$user->userpassword = $data->password;
+//$user->username = 'admin';
+//$user->userpassword = '!GXb)72L';
 
 //authentication
 if ($user->checkPassword()) {   
     if ($user->isposter || $user->isadmin) {
         $post = new SpeedData_UC_KY($db);
-        //$post->body = $data->xml;
-        $post->body = 'This is a default xml';
+        $post->body = $data->xml;
+        //$post->body = 'This is a default xml';
         $result = $post->update();
         $rownum = $result->rowCount();
         // Update post
@@ -47,8 +47,6 @@ if ($user->checkPassword()) {
     }else{
       echo "You don't have permission to update data;";
     }
-} else {
-    echo "Your username and password don't match";
-}
+} 
 
 
