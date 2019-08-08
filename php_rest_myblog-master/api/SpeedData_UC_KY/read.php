@@ -14,7 +14,7 @@
   $post = new SpeedData_UC_KY($db);
   print_r( "First");
   // Blog post query
- // $result = $post->read();
+  $result = $post->read();
   print_r( "read");
   // Get row count
  // $num = $result->rowCount();

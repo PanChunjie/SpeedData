@@ -28,6 +28,7 @@ class SpeedData_UC_KY
         // $sth->bindParam(1, $this->table);
         $sth->execute();
             // $result = $sth->fetch(PDO::FETCH_ASSOC);
+            printf("Error: $s.\n", $sth->error);
         return $sth;
     }
 
