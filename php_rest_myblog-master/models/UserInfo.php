@@ -23,34 +23,37 @@ class UserInfo
     // Get Posts
     public function checkPassword()
     {
-        $query = "SELECT user_password, is_poster, is_reader, is_admin FROM UserInfo where user_name = 'admin'";
+        $query = "SELECT user_password, is_poster, is_reader, is_admin FROM UserInfo where user_name = :username";
         $sth = $this->conn->prepare($query);
         echo "query";
-       // $stmt->bindParam(1, $this->username);
+        $sth->bindParam(":username", $this->username);
         echo "bind";
-        $sth->execute();
-        echo "execute";
-        $row = $stmt->fetch(PDO::FETCH_ASSOC);
-        echo $row;
-        if(password_verify($this->userpassword, $row['userpassword'])){
-            
-            $this->isposter = $row['isposter'];
-            $this->isreader = $row['isreader'];
-            $this->isadmin = $row['isadmin'];
-            return true;
+        if($sth->execute()){
+            echo "execute";
+            $row = $sth->fetch(PDO::FETCH_ASSOC);
+            echo $row;
+            echo $row['user_password'];
+            if(password_verify($this->userpassword, $row['user_password'])){
+                echo "succ";
+                $this->isposter = $row['is_poster'];
+                $this->isreader = $row['is_reader'];
+                $this->isadmin = $row['is_admin'];
+                return true;
+            }else{
+                echo "false";
+                return false;
+            }
         }else{
+            printf("Error: %s.\n", $sth->error);
+
             return false;
         }
+
         
         // Create query
        // $query = "SELECT body FROM SpeedData_UC_OH where id = 1";
         //$result = $conn->query($query);
-        
-        $sth = $this->conn->prepare($query);
-        // $sth->bindParam(1, $this->table);
-        $sth->execute();
-            // $result = $sth->fetch(PDO::FETCH_ASSOC);
-        return $sth;
+       
     }
 
     
