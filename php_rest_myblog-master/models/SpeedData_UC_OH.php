@@ -1,5 +1,5 @@
 <?php
-class Post
+class SpeedData_UC_OH
 {
     // DB stuff
     private $conn;

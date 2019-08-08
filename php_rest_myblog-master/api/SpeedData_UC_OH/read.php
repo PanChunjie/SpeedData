@@ -2,9 +2,9 @@
   // Headers
   header('Access-Control-Allow-Origin: *');
   header('Content-Type: application/json');
-  
+  header('Access-Control-Allow-Methods: GET');
   include_once '../../config/Database.php';
-  include_once '../../models/Post.php';
+  include_once '../../models/SpeedData_UC_OH.php';
  
   // Instantiate DB & connect
   $database = new Database();
@@ -23,7 +23,10 @@
    if($num > 0) {
     $row = $result->fetch(PDO::FETCH_ASSOC);
     
-    print_r(htmlspecialchars_decode( $row[body]));
+    //print_r(htmlspecialchars_decode( $row[body]));
+    //$xml = new SimpleXMLElement($string);
+
+    echo $string->asXML();
 
    } else {
   //   // No Posts
