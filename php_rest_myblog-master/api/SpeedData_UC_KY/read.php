@@ -1,7 +1,9 @@
 <?php 
   // Headers
   header('Access-Control-Allow-Origin: *');
-  header('Content-Type: application/json');
+  //header('Content-Type: application/json');
+  header('Content-type: application/xml');
+  header('Content-Disposition: attachment;filename="SpeedData_UC_KY.xml"');
   header('Access-Control-Allow-Methods: GET');
   include_once '../../config/Database.php';
   include_once '../../models/SpeedData_UC_KY.php';
@@ -22,8 +24,7 @@
    // // Check if any posts
    if($num > 0) {
     $row = $result->fetch(PDO::FETCH_ASSOC);
-    
-    print_r(htmlspecialchars_decode( $row[body]));
+    echo htmlspecialchars_decode( $row[body]);
     
 
    } else {
