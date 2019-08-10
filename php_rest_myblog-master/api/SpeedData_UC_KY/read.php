@@ -2,12 +2,17 @@
   // Headers
   header('Access-Control-Allow-Origin: *');
   //header('Content-Type: application/json');
-  header('Content-type: text/xml');
+  header('Content-type: text/xml'); //return type
   header('Content-Disposition: attachment;filename="SpeedData_UC_KY.xml"');
   header('Access-Control-Allow-Methods: GET');
+  header('Pragma: Public');
   include_once '../../config/Database.php';
   include_once '../../models/SpeedData_UC_KY.php';
- 
+  $username = $_GET['username'];
+  $password = $_GET['password'];
+  echo $username;
+  echo $password;
+
   // Instantiate DB & connect
   $database = new Database();
   $db = $database->connect();
