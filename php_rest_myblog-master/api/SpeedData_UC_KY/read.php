@@ -8,10 +8,10 @@
   header('Pragma: Public');
   include_once '../../config/Database.php';
   include_once '../../models/SpeedData_UC_KY.php';
-  $username = $_GET['username'];
-  $password = $_GET['password'];
-  echo $username;
-  echo $password;
+  //$username = $_GET['username'];
+ // $password = $_GET['password'];
+ // echo $username;
+ // echo $password;
 
   // Instantiate DB & connect
   $database = new Database();
