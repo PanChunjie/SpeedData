@@ -2,7 +2,7 @@
   // Headers
   header('Access-Control-Allow-Origin: *');
   //header('Content-Type: application/json');
-  header('Content-type: application/xml');
+  header('Content-type: text/xml');
   header('Content-Disposition: attachment;filename="SpeedData_UC_KY.xml"');
   header('Access-Control-Allow-Methods: GET');
   include_once '../../config/Database.php';
