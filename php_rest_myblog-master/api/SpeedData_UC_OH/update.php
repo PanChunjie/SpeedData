@@ -42,8 +42,6 @@ if ($user->checkPassword()) {
     }else{
       echo "You don't have permission to update data;";
     }
-} else {
-    echo "Your username and password don't match;";
-}
+} 
 
 

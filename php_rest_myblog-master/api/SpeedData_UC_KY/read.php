@@ -20,10 +20,7 @@ $user->userpassword = $_GET['password'];
 
 if ($user->checkPassword()) {
     if ($user->isposter || $user->isadmin || $user->isreader) {
-        // Instantiate DB & connect
-        $database = new Database();
-        $db = $database->connect();
-
+        
         // Instantiate blog post object
         $post = new SpeedData_UC_KY($db);
 
@@ -46,6 +43,4 @@ if ($user->checkPassword()) {
       echo "You don't have permission to read data;";
     }
 
-}else{
-  echo "Your username and password don't match;";;
 }
