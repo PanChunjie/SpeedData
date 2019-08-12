@@ -8,7 +8,7 @@ header('Access-Control-Allow-Methods: GET');
 //header('Pragma: Public');
 include_once '../../config/Database.php';
 include_once '../../models/SpeedData_UC_KY.php';
-
+include_once '../../models/UserInfo.php';
 // Instantiate DB & connect
 $database = new Database();
 $db = $database->connect();
@@ -19,29 +19,29 @@ echo "before user";
 $user->username = $_GET['username'];
 $user->userpassword = $_GET['password'];
 echo "before check";
-// if ($user->checkPassword()) {
-//     if ($user->isposter || $user->isadmin || $user->isreader) {
+if ($user->checkPassword()) {
+    if ($user->isposter || $user->isadmin || $user->isreader) {
         
-//         // Instantiate blog post object
-//         $post = new SpeedData_UC_KY($db);
+        // Instantiate blog post object
+        $post = new SpeedData_UC_KY($db);
 
-//         //post query
-//         $result = $post->read();
+        //post query
+        $result = $post->read();
 
-//         // Get row count
-//         $num = $result->rowCount();
+        // Get row count
+        $num = $result->rowCount();
 
-//         // // Check if any posts
-//         if ($num > 0) {
-//             $row = $result->fetch(PDO::FETCH_ASSOC);
-//             echo htmlspecialchars_decode($row[body]);
+        // // Check if any posts
+        if ($num > 0) {
+            $row = $result->fetch(PDO::FETCH_ASSOC);
+            echo htmlspecialchars_decode($row[body]);
 
-//         } else {
-//             //   // No Posts
-//             echo "Data not found;";
-//         }
-//     } else {
-//       echo "You don't have permission to read data;";
-//     }
+        } else {
+            //   // No Posts
+            echo "Data not found;";
+        }
+    } else {
+      echo "You don't have permission to read data;";
+    }
 
-// }
+}
