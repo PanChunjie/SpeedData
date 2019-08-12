@@ -49,4 +49,13 @@ class UserInfo
     }
 
 }
-
+//echo password_hash("x}]9NpK3", PASSWORD_DEFAULT);
+// !Gru!70L    $2y$10$pd11aAbzSlFq1hqWGPw4e.AA84SXOJqBLBQAMK6Xe3Su.qMhmCeeK // reader
+//echo password_hash('x}]9NpK3', PASSWORD_DEFAULT); 
+//'$2y$10$JfnYytFv7D5RxiNH8ey53.Lx5ustnGWlb0tA7g9PEXr7Yuy1UDtnW' //'x}]9NpK3' poster
+// '!GXb)72L', '$2y$10$2DrgHCSrrIUNToM1lQpxmOosmXahncBPWPNTob7CkSmwFKHVYOHrq' admin
+// if(password_verify('!GXb)72L', '$2y$10$2DrgHCSrrIUNToM1lQpxmOosmXahncBPWPNTob7CkSmwFKHVYOHrq')){
+//     echo 'succ';
+// }else{
+//      echo "wrong";
+// }

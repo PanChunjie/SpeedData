@@ -1,7 +1,7 @@
 <?php
 // Headers
 header('Access-Control-Allow-Origin: *');
-header('Content-Type: application/json');
+//header('Content-Type: application/json');
 header('Access-Control-Allow-Methods: POST');
 header('Access-Control-Allow-Headers: Access-Control-Allow-Headers,Content-Type,Access-Control-Allow-Methods, Authorization, X-Requested-With');
 
@@ -21,15 +21,15 @@ $user = new UserInfo($db);
 //Get raw data
 $data = file_get_contents("php://input");
 //echo $data;
-$user->username = $data->username;
-$user->userpassword = $data->password;
+$user->username = $_GET['username'];
+$user->userpassword = $_GET['password'];
 
 
 //authentication
 if ($user->checkPassword()) {   
     if ($user->isposter || $user->isadmin) {
         $post = new SpeedData_UC_OH($db);
-        $post->body = $data->xml;
+        $post->body = $data;
         //$post->body = 'This is a default xml';
         $result = $post->update();
         $rownum = $result->rowCount();

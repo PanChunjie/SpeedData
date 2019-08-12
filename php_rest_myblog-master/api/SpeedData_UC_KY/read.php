@@ -14,11 +14,10 @@ $database = new Database();
 $db = $database->connect();
 // Instantiate user object
 $user = new UserInfo($db);
-echo "before user";
 //echo $data;
 $user->username = $_GET['username'];
 $user->userpassword = $_GET['password'];
-echo "before check";
+
 if ($user->checkPassword()) {
     if ($user->isposter || $user->isadmin || $user->isreader) {
         
