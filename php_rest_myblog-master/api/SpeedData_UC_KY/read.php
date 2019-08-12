@@ -9,6 +9,9 @@ header('Access-Control-Allow-Methods: GET');
 include_once '../../config/Database.php';
 include_once '../../models/SpeedData_UC_KY.php';
 
+// Instantiate DB & connect
+$database = new Database();
+$db = $database->connect();
 // Instantiate user object
 $user = new UserInfo($db);
 //echo $data;
