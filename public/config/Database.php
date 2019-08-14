@@ -1,29 +1,37 @@
 <?php 
   class Database {
     // DB Params
+    private $host = 'ec2-174-129-226-232.compute-1.amazonaws.com';
+    private $db_name = 'd7ken1r1teta2e';
+    private $username = 'smjvlbeupqpqtc';
+    private $password = '111f398800f92d0708dabfe7603f8c44da14311fb6eb861e1a0b41f6febdc2a2';
+    private $port = "5432";
     private $conn;
 
     // DB Connect
     public function connect() {
         $this->conn = null;
-        $config = parse_ini_file('../private/config.ini'); 
+        
         try { 
         //  $dsn = "pgsql:host=" . $this->host . ";port=" . $this->port . ";dbname=" . $this->db_name . ";user=" . $this->username . ";password =" . $this->password . ";";
         //  $this->conn = new PDO($dsn, $this->username, $this->password);
           $this->conn = new PDO("pgsql:" . sprintf(
             "host=%s;port=%s;user=%s;password=%s;dbname=%s",
-            $config['hostname'],
-            $config['port'],
-            $config['username'],
-            $config['password'],
-            $config['dbname']
+            $this->host,
+            $this->port,
+            $this->username,
+            $this->password,
+            ltrim($this->db_name, "/")
         ));
          // $this->conn->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_OBJ);
           $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
           
         } catch(PDOException $e) {
           echo 'Connection Error: ' . $e->getMessage();
-        }    
+        }
+      
+      
+
       return $this->conn;
     }
   }
